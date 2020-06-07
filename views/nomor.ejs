@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<%- include('components/header.ejs') -%>
+  </head>
+  <body>
+    <h1>Judul</h1>
+    <form action="/nomor" method="POST">
+      <input type="text" placeholder="Rule Regex Nomor" name="regex_nomor" />
+      <input type="text" placeholder="Keterangan" name="keterangan" />
+      <button type="submit" class="waves-effect waves-light btn">Submit</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Regex Nomor</th>
+          <th>Keterangan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0; i < data.length; i++) { %>
+        <tr>
+          <td><%= data[i].id_regex_nomor %></td>
+          <td><%= data[i].regex_nomor %></td>
+          <td><%= data[i].keterangan %></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </body>
+</html>

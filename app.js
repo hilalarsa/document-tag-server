@@ -7,8 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var dosenRouter = require('./routes/dosen');
 var judulRouter = require('./routes/judul');
-var nomorRouter = require('./routes/regexNomor');
-var isiRouter = require('./routes/regexIsi');
+var nomorRouter = require('./routes/nomor');
+var isiRouter = require('./routes/isi');
 
 var app = express();
 
@@ -25,8 +25,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/dosen', dosenRouter);
 app.use('/judul', judulRouter);
-app.use('/regex-nomor', nomorRouter);
-app.use('/regex-isi', isiRouter);
+app.use('/nomor', nomorRouter);
+app.use('/isi', isiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
