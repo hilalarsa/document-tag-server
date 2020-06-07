@@ -1,9 +1,10 @@
 var express = require('express');
+var path = require('path');
 var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.json('respond with a resource');
+  res.render('index', {title: "Hey"})
 });
 
 module.exports = router;

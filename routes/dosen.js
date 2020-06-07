@@ -8,8 +8,8 @@ router.get('/', function(req, res, next) {
     if (error) {
       console.log(error)
     }
-    console.log(results)
-    res.status(200).json(results.rows)
+    // res.status(200).json(results.rows)
+    res.render('dosen', {data: results.rows})
   })
 });
 

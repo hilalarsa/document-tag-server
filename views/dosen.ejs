@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DocTag Server</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </head>
+  <body>
+    <h1>Data Dosen</h1>
+    <form action="/quotes" method="POST">
+      <input type="text" placeholder="Nama dosen" name="nama_dosen" />
+      <input type="text" placeholder="Nomor dosen" name="nomor_dosen" />
+      <input type="text" placeholder="Jabatan" name="jabatan" />
+      <input type="text" placeholder="Bobot" name="bobot" />
+      <button type="submit" class="waves-effect waves-light btn">Submit</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nama dosen</th>
+          <th>Nomor dosen</th>
+          <th>Jabatan</th>
+          <th>Bobot</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0; i < data.length; i++) { %>
+        <tr>
+          <td><%= data[i].id %></td>
+          <td><%= data[i].nama_dosen %></td>
+          <td><%= data[i].nomor_dosen %></td>
+          <td><%= data[i].jabatan %></td>
+          <td><%= data[i].bobot %></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </body>
+</html>

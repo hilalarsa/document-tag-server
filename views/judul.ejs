@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DocTag Server</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </head>
+  <body>
+    <h1>Judul</h1>
+    <form action="/quotes" method="POST">
+      <input type="text" placeholder="Tipe Judul" name="tipe_judul" />
+      <input
+        type="text"
+        placeholder="Trigger word (e.g A, B, C)"
+        name="trigger_word"
+      />
+      <button type="submit" class="waves-effect waves-light btn">Submit</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tipe Judul</th>
+          <th>Trigger Word</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0; i < data.length; i++) { %>
+        <tr>
+          <td><%= data[i].id %></td>
+          <td><%= data[i].tipe_judul %></td>
+          <td><%= data[i].trigger_word %></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </body>
+</html>
