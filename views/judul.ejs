@@ -20,6 +20,7 @@
           <th>ID</th>
           <th>Tipe Judul</th>
           <th>Trigger Word</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -28,6 +29,7 @@
           <td><%= data[i].id %></td>
           <td><%= data[i].tipe_judul %></td>
           <td><%= data[i].trigger_word %></td>
+          <td><a href="/judul/<%= data[i].id %>" class="waves-effect waves-light btn btn-danger">Delete</a></td>
         </tr>
         <% } %>
       </tbody>

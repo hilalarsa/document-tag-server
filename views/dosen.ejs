@@ -6,10 +6,14 @@
   <body>
     <h1>Data Dosen</h1>
     <form action="/dosen" method="POST">
+      <p>Nama dosen</p>
       <input type="text" placeholder="Nama dosen" name="nama_dosen" />
-      <input type="text" placeholder="Nomor dosen" name="nomor_dosen" />
-      <input type="text" placeholder="Jabatan" name="jabatan" />
-      <input type="text" placeholder="Bobot" name="bobot" />
+      <p>NIP</p>
+      <input type="text" placeholder="NIP" name="nomor_dosen" />
+      <!-- <p>Bobot</p>
+      <input type="text" placeholder="Bobot" name="bobot" /> -->
+      <p>NIDN</p>
+      <input type="text" placeholder="NIDN" name="nidn" />
       <button type="submit" class="waves-effect waves-light btn">Submit</button>
     </form>
     <table>
@@ -17,9 +21,9 @@
         <tr>
           <th>ID</th>
           <th>Nama dosen</th>
-          <th>Nomor dosen</th>
-          <th>Jabatan</th>
-          <th>Bobot</th>
+          <th>NIP</th>
+          <!-- <th>Bobot</th> -->
+          <th>NIDN</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -29,8 +33,8 @@
           <td><%= data[i].id_dosen %></td>
           <td><%= data[i].nama_dosen %></td>
           <td><%= data[i].nomor_dosen %></td>
-          <td><%= data[i].jabatan %></td>
-          <td><%= data[i].bobot %></td>
+          <!-- <td><%= //data[i].bobot %></td> -->
+          <td><%= data[i].nidn %></td>
           <td><a href="/dosen/<%= data[i].id_dosen %>" class="waves-effect waves-light btn btn-danger">Delete</a></td>
         </tr>
         <% } %>

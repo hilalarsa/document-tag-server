@@ -9,6 +9,17 @@ router.get('/', function(req, res, next) {
         console.log(error)
       }
       console.log(results)
+      res.status(200).json(results.rows)
+      // res.render("isi", { data: results.rows });
+    })
+  });
+
+router.get('/view', function(req, res, next) {
+    pool.query('SELECT * FROM regex_isi ORDER BY id_regex_isi ASC', (error, results) => {
+      if (error) {
+        console.log(error)
+      }
+      console.log(results)
       // res.status(200).json(results.rows)
       res.render("isi", { data: results.rows });
     })
