@@ -20,16 +20,18 @@
           <th>ID</th>
           <th>Tipe Judul</th>
           <th>Trigger Word</th>
+          <th>Is nama dosen matter</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <% for(var i=0; i < data.length; i++) { %>
         <tr>
-          <td><%= data[i].id %></td>
+          <td><%= data[i].id_judul %></td>
           <td><%= data[i].tipe_judul %></td>
           <td><%= data[i].trigger_word %></td>
-          <td><a href="/judul/<%= data[i].id %>" class="waves-effect waves-light btn btn-danger">Delete</a></td>
+          <td><%= data[i].is_multiple %></td>
+          <td><a href="/judul/<%= data[i].id_judul %>" class="waves-effect waves-light btn btn-danger">Delete</a></td>
         </tr>
         <% } %>
       </tbody>

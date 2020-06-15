@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
     }
     console.log(results)
     // res.status(200).json(results.rows)
-    res.redirect('/judul')
+    res.redirect('/judul/view')
   })
 });
 
@@ -41,7 +41,7 @@ router.get('/:id', function(req, res, next) {
     }
     console.log(results)
     // res.status(200).json(results.rows)
-    res.redirect('/judul')
+    res.redirect('/judul/view')
   })
 });
 

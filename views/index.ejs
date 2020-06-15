@@ -18,9 +18,14 @@
 
     <h1>Upload</h1>
     <p>Upload single file (*/image OR *.pdf)</p>
-    <a href="#" class="waves-effect waves-light btn">Upload</a>
+    <form action="/" method="post" enctype="multipart/form-data">
+      <input type="file" accept="image/*" name="photo">
+      <button type="submit" class="waves-effect waves-light btn">
+        RUN THE ENGINE BOIS
+      </button>
+    </form>
     <h1>Output</h1>
-    <p>Download after result is finish here</p>
+    <p>Text output <%= data %></p>
     <a href="#" class="waves-effect waves-light btn">Download</a>
   </body>
 </html>
