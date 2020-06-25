@@ -5,9 +5,12 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- <script src="../library/dropzone-5.7.0/dist/dropzone.js"></script> -->
   </head>
   <body>
     <h1>Menu</h1>
@@ -18,14 +21,26 @@
 
     <h1>Upload</h1>
     <p>Upload single file (*/image OR *.pdf)</p>
-    <form action="/" method="post" enctype="multipart/form-data">
+    <!-- <form action="/" method="post" enctype="multipart/form-data">
       <input type="file" accept="image/*" name="photo">
       <button type="submit" class="waves-effect waves-light btn">
         RUN THE ENGINE BOIS
       </button>
+    </form> -->
+    <form action="/" 
+      method="post" 
+      enctype="multipart/form-data"
+      class="dropzone"
+      id="my-awesome-dropzone"
+      name="file">
+      <!-- <input type="file" name="photo"> -->
     </form>
+        <button type="submit" class="waves-effect waves-light btn">
+          RUN THE ENGINE BOIS
+        </button>
     <h1>Output</h1>
-    <p>Text output <%= data %></p>
+    <p>Text output <%= data %></p> <%= data %>
     <a href="#" class="waves-effect waves-light btn">Download</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
   </body>
 </html>

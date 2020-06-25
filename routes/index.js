@@ -12,29 +12,35 @@ const spawn = require("child_process").spawn;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index', {data: []})
+    res.render('index', {data: "Hello world"})
 });
 
-router.post('/', upload.single('photo'), (req, res) => {
-  if(req.file) {
-    const tempPath = req.file.path;
-    const targetPath = path.join(__dirname, "./uploads/"+req.file.originalname);
+router.post('/', upload.array('file', 10), (req, res) => {
+  var file = req.files[0]
+  if(file) {
+    console.log(req.files)
+    console.log("========")
+    const tempPath = file.path;
+    const targetPath = path.join(__dirname, "./uploads/"+file.originalname);
+    const filePath = path.join(__dirname, "./output/"+file.originalname+".txt");
+
     
     // move uploaded file to /uploads
-    fs.rename(tempPath, targetPath, err => {
+    fs.rename(tempPath, targetPath, async(err) => {
       if (err) console.log(err)
-      // runPython(targetPath)
+      console.log("renamed")
       const pythonProcess = spawn('python',[__dirname+"/../../scripts/main.py", targetPath]);
-      // console.log(pythonProcess)
       pythonProcess.stdout.on('data', (data) => {
         // Do something with the data returned from python script
-        console.log("something returned boi")
+        // messegeFromPython = JSON.stringify(data.toString('utf8')).replace("\\n", "");
         console.log(data.toString())
-        // res.redirect('/')
-        res.render('index', {data: data.toString()})
+        fs.writeFile(filePath, data.toString(), function (err) {
+          if (err) console.log(err)
+          console.log('File is created successfully.');
+        });
+        // res.render('index', {data: messegeFromPython})
+        res.redirect('/')
       });
-      // res.status(200).send(text)
-
     })
   }else{
       res.status(400).send("Upload file failed successfully")

@@ -8,7 +8,6 @@ router.get('/', function(req, res, next) {
       if (error) {
         console.log(error)
       }
-      console.log(results)
       res.status(200).json(results.rows)
       // res.render("isi", { data: results.rows });
     })
@@ -19,7 +18,6 @@ router.get('/view', function(req, res, next) {
       if (error) {
         console.log(error)
       }
-      console.log(results)
       // res.status(200).json(results.rows)
       res.render("isi", { data: results.rows });
     })
@@ -31,9 +29,8 @@ router.get('/view', function(req, res, next) {
       if (error) {
         console.log(error)
       }
-      console.log(results)
       // res.status(200).json(results.rows)
-      res.redirect('/isi')
+      res.redirect('/isi/view')
     })
   });
 
@@ -43,7 +40,6 @@ router.get('/view', function(req, res, next) {
       if (error) {
         console.log(error)
       }
-      console.log(results)
       // res.status(200).json(results.rows)
       res.redirect('/isi')
     })

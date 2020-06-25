@@ -1,0 +1,3 @@
+doc_type: surat tugas kolektif
+nama_dosen: putra prima arhandi
+

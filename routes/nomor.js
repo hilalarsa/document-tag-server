@@ -10,7 +10,6 @@ router.get("/", function(req, res, next) {
       if (error) {
         console.log(error);
       }
-      console.log(results);
       res.status(200).json(results.rows)
       // res.render("nomor", { data: results.rows });
     }
@@ -24,7 +23,6 @@ router.get("/view", function(req, res, next) {
       if (error) {
         console.log(error);
       }
-      console.log(results);
       // res.status(200).json(results.rows)
       res.render("nomor", { data: results.rows });
     }
@@ -37,7 +35,6 @@ router.post('/', function(req, res, next) {
     if (error) {
       console.log(error)
     }
-    console.log(results)
     // res.status(200).json(results.rows)
     res.redirect('/nomor')
   })
@@ -49,7 +46,6 @@ router.get('/:id', function(req, res, next) {
     if (error) {
       console.log(error)
     }
-    console.log(results)
     // res.status(200).json(results.rows)
     res.redirect('/nomor')
   })

@@ -27,7 +27,6 @@ router.post('/', function(req, res, next) {
     if (error) {
       console.log(error)
     }
-    console.log(results)
     // res.status(200).json(results.rows)
     res.redirect('/judul/view')
   })
@@ -39,7 +38,6 @@ router.get('/:id', function(req, res, next) {
     if (error) {
       console.log(error)
     }
-    console.log(results)
     // res.status(200).json(results.rows)
     res.redirect('/judul/view')
   })
