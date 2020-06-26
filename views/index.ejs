@@ -4,10 +4,14 @@
     <title>DocTag Server</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css">
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css"
+    />
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- <script src="../library/dropzone-5.7.0/dist/dropzone.js"></script> -->
@@ -21,26 +25,55 @@
 
     <h1>Upload</h1>
     <p>Upload single file (*/image OR *.pdf)</p>
-    <!-- <form action="/" method="post" enctype="multipart/form-data">
-      <input type="file" accept="image/*" name="photo">
+    <form action="/" method="post" enctype="multipart/form-data" multiple="multiple" name="file">
+      <input type="file" name="file">
       <button type="submit" class="waves-effect waves-light btn">
-        RUN THE ENGINE BOIS
+        UPLOAD
       </button>
-    </form> -->
-    <form action="/" 
-      method="post" 
-      enctype="multipart/form-data"
-      class="dropzone"
-      id="my-awesome-dropzone"
-      name="file">
-      <!-- <input type="file" name="photo"> -->
     </form>
-        <button type="submit" class="waves-effect waves-light btn">
-          RUN THE ENGINE BOIS
-        </button>
+    <!-- <form
+      action="/"
+      method="post"
+      enctype="multipart/form-data"
+      multiple="multiple"
+      class="dropzone"
+      style="width: 30%"
+      id="myAwesomeDropzone"
+      name="file"
+    >
+    </form>
+    <button id="submit-all" type="submit" class="waves-effect waves-light btn">
+      RUN ENGINE
+    </button> -->
     <h1>Output</h1>
-    <p>Text output <%= data %></p> <%= data %>
-    <a href="#" class="waves-effect waves-light btn">Download</a>
+    <div><%= data %></div>
+    <a href="/download/<%= encodeURIComponent(data); %>" class="waves-effect waves-light btn">Download</a>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    <script>
+      {
+        console.log("Hello world");
+
+        Dropzone.options.myAwesomeDropzone = {
+          paramName: "file", // The name that will be used to transfer the file
+          autoProcessQueue: false,
+          init: function() {
+            var submitButton = document.querySelector("#submit-all");
+            myAwesomeDropzone = this; // closure
+            submitButton.addEventListener("click", function() {
+              if (myAwesomeDropzone.getQueuedFiles().length === 0) {
+                alert("Please drop or select file to upload !!!");
+              } else {
+                for (var i = 0; i < myAwesomeDropzone.getAcceptedFiles().length; i++) {
+                    myAwesomeDropzone.processFile(myAwesomeDropzone.getAcceptedFiles()[i]);
+                }; // Tell Dropzone to process all queued files.
+
+              }
+            });
+          }
+        };
+
+        
+      }
+    </script>
   </body>
 </html>

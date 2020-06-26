@@ -1,0 +1,10 @@
+filename: lembarpengesahan1.jpeg
+doc_type: halaman pengesahan
+	nama_dosen: putra prima arhandi
+	bobot: 30
+	nama_dosen: ulla delfana rosiani
+	bobot: 20
+	nama_dosen: ridwan rismanto
+	bobot: 10
+nomor:dr. eng. st.. m.kom. nip. 2. st. m.kom. nip. 3. s.t. m.t. nip. sst. m.kom. nip. s.t.. m.t. nip.
+tanggal: 

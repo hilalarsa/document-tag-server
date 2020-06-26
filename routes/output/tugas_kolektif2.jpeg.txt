@@ -1,0 +1,14 @@
+filename: tugas_kolektif2.jpeg
+doc_type: surat tugas kolektif
+	nama_dosen: putra prima arhandi
+	bobot: 50
+	nama_dosen: dyah ayu irawati
+	bobot: 40
+	nama_dosen: arief prasetyo
+	bobot: 30
+	nama_dosen: ridwan rismanto
+	bobot: 20
+	nama_dosen: annisa taufika firdausi
+	bobot: 10
+nomor:- 10291/plykp7019 s.t. m.kom. s.t. mcs. s.kom m.kom. 5.5t. m.kom st. mt. sesmpliu/hk/2019 sebaik-bsiknya. 2. jurusao/ informasi.
+tanggal: 

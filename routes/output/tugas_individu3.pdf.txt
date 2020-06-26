@@ -1,0 +1,6 @@
+filename: tugas_individu3.pdf
+doc_type: surat tugas individu
+	nama_dosen: putra prima arhandi
+	bobot: 10
+nomor:soekarto- no. - polinema.ac.id .t. m.kom. 1/ / d-iv t. mk. 2019/2020. sebaik-baiknya jawab. i. 2. ka. sub. bag. frm.rt1.02.01.01
+tanggal: 

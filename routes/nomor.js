@@ -36,7 +36,7 @@ router.post('/', function(req, res, next) {
       console.log(error)
     }
     // res.status(200).json(results.rows)
-    res.redirect('/nomor')
+    res.redirect('/nomor/view')
   })
 });
 
