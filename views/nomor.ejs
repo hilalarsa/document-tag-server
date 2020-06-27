@@ -16,6 +16,7 @@
           <th>ID</th>
           <th>Regex Nomor</th>
           <th>Keterangan</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -24,6 +25,7 @@
           <td><%= data[i].id_regex_nomor %></td>
           <td><%= data[i].regex_nomor %></td>
           <td><%= data[i].keterangan %></td>
+          <td><a href="/dosen/<%= data[i].id_regex_nomor %>" class="waves-effect waves-light btn btn-danger">Delete</a></td>
         </tr>
         <% } %>
       </tbody>

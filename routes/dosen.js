@@ -43,7 +43,7 @@ router.get('/:id', function(req, res, next) {
     }
     console.log(results)
     // res.status(200).json(results.rows)
-    res.redirect('/dosen')
+    res.redirect('/dosen/view')
   })
 });
 

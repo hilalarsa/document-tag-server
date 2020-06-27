@@ -41,7 +41,7 @@ router.get('/view', function(req, res, next) {
         console.log(error)
       }
       // res.status(200).json(results.rows)
-      res.redirect('/isi')
+      res.redirect('/isi/view')
     })
   });
 
