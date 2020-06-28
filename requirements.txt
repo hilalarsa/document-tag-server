@@ -21,7 +21,6 @@ docutils==0.15.2
 enum34==1.1.6
 filelock==3.0.12
 funcsigs==1.0.2
-functools32==3.2.3.post2
 ghostscript==0.6
 gitdb==0.6.4
 GitPython==0.3.6
