@@ -7,7 +7,7 @@ const client = new Client({
   }
 });
 client.connect();
-module.exports = client;
+module.exports = client; 
 
 
   // const pool = new Pool({
