@@ -1,1 +1,2 @@
-web: gunicorn gettingstarted.wsgi --log-file -
+web: npm start
+pipinstall: pip install -r requirements.txt
