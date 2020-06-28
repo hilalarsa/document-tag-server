@@ -51,7 +51,6 @@ pipreqs==0.4.10
 pycrypto==2.6.1
 pycryptodome==3.9.4
 Pygments==2.4.2
-pygobject==3.26.1
 pyOpenSSL==17.5.0
 pyparsing==2.4.5
 PyPDF2==1.26.0
