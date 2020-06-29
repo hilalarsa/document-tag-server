@@ -47,7 +47,7 @@ def textTransform(filePath):
 # raw_text = textTransform("../sample/tugas/tugas_kolektif3.jpeg")
 # raw_text = textTransform("../sample/sertifikat/sertifikat1.jpeg")
 # raw_text = textTransform(sys.argv[1])
-# raw_text = textTransform(sys.argv[1])
+raw_text = textTransform(sys.argv[1])
 # raw_text = textTransform("../../sample/lembar pengesahan/lembarpengesahan1.jpeg")
 # raw_text = textTransform("../sample/other/test3.pdf")
 # raw_text = textTransform("../../sample/pengujian/keputusan1.jpg")
@@ -59,11 +59,11 @@ def textTransform(filePath):
 # raw_text = textTransform("../../sample/pengujian/surat-pengangkatan1.jpeg")
 # raw_text = textTransform("../../sample/pengujian/surat-pengangkatan1.pdf")
 # raw_text = textTransform("../../sample/pengujian/tugas_kolektif1.jpeg")
-raw_text = textTransform("../../sample/tugas/tugas_individu1.jpeg")
-print(raw_text.replace("\n", "\\n"))
+# raw_text = textTransform("../../sample/tugas/tugas_individu1.jpeg")
+# print(raw_text.replace("\n", "\\n"))
 # tokenize text into sentences
 sentences = nltk.sent_tokenize(raw_text)
-print(sentences)
+# print(sentences)
 # split sentence into individual word
 full_words = []
 for i, sentence in enumerate(sentences):
@@ -84,7 +84,7 @@ for i, sentence in enumerate(sentences):
     word = encodedText.split()
     full_words = full_words + word
     # print words
-print(full_words)
+# print(full_words)
 # text ready to be compared with database
 dataDosen = get_data('dosen')
 dataJudul = get_data('judul')
@@ -142,7 +142,7 @@ for i, nama in enumerate(nama_dosen):
                 dosen_text = dosen_text + " " + nama_dosen[i+counter]
                 counter = counter + 1
                 if(counter == part_length):
-                    print(dosen_text)
+                    # print(dosen_text)
                     dosen_array.append({"text": dosennamefull, "counter": "1", "nidn": dosen['nidn'], "nip": dosen['nomor_dosen']})
                     dosen_text = ""
             else:
@@ -205,8 +205,8 @@ for regex in dataRegexIsi:
             if result2 is not None:
                 tanggal.append(result2)
 
-filepath = "../sample/tugas/tugas_individu1.jpeg"
-# filepath = sys.argv[1]
+# filepath = "../sample/tugas/tugas_individu1.jpeg"
+filepath = sys.argv[1]
 file_name = os.path.basename(filepath)
 print("filename: "+file_name)
 print("doc_type: "+document_type)
