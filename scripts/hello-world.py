@@ -1,6 +1,10 @@
-import sys
+from difflib_checker import text_matcher, text_matcher_dosen, get_document_type, regex_checker
+pattern = '(jan|feb|mar|apr|may|jun|jul|aug|sept|sep|okt|nov|des|januari|februari|maret|april|mei|juni|juli|agustus|september|oktober|november|desember)'
+full_words = [u'1', u'oktober,', u'1999', u'dan', u'pendidikan', u'tinggi', u'warang', u'politeknik', u'negeri', u'malang', u'cc', u'jalan', u'soekarno', u'hari', u'no.9', u'malang', u'65141', u'telepon', u'0341', u'doda1a', u'-', u'404425', u'vax', u'0341', u'464420', u'id', u'tr', u'surat', u'tugas', u'nomor:', u'10116/pl2/kp/2019', u'direktur', u'politeknik', u'negeri', u'malang', u'memberi', u'tugas', u'kepada:', u'nama', u'peneliti', u'nidn', u'jabatan', u'putra', u'prima', u'arhandi,', u'5.t.,', u'mkom', u'oojilbe02', u'\u2014', u'|', u'ketua', u'luoman', u'affandi,', u's,kom.,', u'm.msi', u'6730114201', u'anggota', u'dimas', u'wahyu', u'wibowo,', u's.t.', u'mt', u'0209105402', u'anggota', u'untuk', u'melaksanakan', u'kegiatan', u'penelitian', u'reguler', u'kompetisi', u'yang', u'dibinya', u'dengan', u'dana', u'dipa', u'nomor:', u'sp', u'dipa4mi0124010042019', u'dengan', u'surat', u'perjanjian', u'no:', u'9675ipl2.', u'/hk/2019,', u'dengan', u'judul', u':', u'aplikasi', u'whatsapp', u'gateway', u'dengan', u'nomor', u'kontak', u'otomatis', u'untuk', u'notifikasi', u'surat', u'peringatan', u'mahasiswa', u'menggunakan', u'metode', u'mesin', u'turing', u'dan', u'rest', u'politeknik', u'negeri', u'malang', u'1', u'april', u's/d', u'31', u'oktober', u'2019', u'tempat', u'pelaksanaan', u'waktu', u'pelaksanaan', u'demikian', u'surat', u'tugas', u'ini', u'dibuat', u'untuk', u'dilaksanakan', u'dengan', u'sebaik-baiknya.', u'setiawan,', u'mmt.,', u'mm', u'nip.', u'1195909101986031002', u'tembusan:', u'i.', u'pembantu', u'direktur', u'1.', u'pembanyu', u'direktur', u'il,', u'3.', u'ketua', u'jurusar', u'program', u'stodi', u'teknologi', u'informaal']
+# for i, word in enumerate(full_words):
+#     result = regex_checker(pattern, word)
+#     if result is not None:
+#         print(full_words[i-1])
+#         print(result)
+#         print(full_words[i+1])
 
-# print("Hello world")
-print(sys.argv[1])
-# print("dataToSendBack")
-sys.stdout.flush()

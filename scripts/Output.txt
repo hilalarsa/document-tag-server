@@ -1,0 +1,9 @@
+doc_type: surat tugas individu
+filename: tugas_individu1.jpeg
+doc_type: surat tugas individu
+	nama_dosen: putra prima arhandi
+	bobot: 10
+	nip: 198611032014041001
+	nidn: -
+nomor: 
+tanggal:

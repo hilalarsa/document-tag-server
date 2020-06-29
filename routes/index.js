@@ -17,17 +17,19 @@ router.get('/', function(req, res, next) {
 
 router.post('/', upload.array('file', 10), (req, res) => {
   var file = req.files[0]
+  console.log(file)
   if(file) {
     console.log("Data upload start (1/4)")
     const tempPath = file.path;
     const targetPath = path.join(__dirname, "./uploads/"+file.originalname);
     const filePath = path.join(__dirname, "./output/"+file.originalname+".txt");
     
+    console.log(__dirname+"/../scripts/main.py")
     // move uploaded file to /uploads
     fs.rename(tempPath, targetPath, async(err) => {
       if (err) console.log(err)
       console.log("File uploaded in server (2/4)")
-      const pythonProcess = spawn('python',[__dirname+"/../../scripts/main.py", targetPath]);
+      const pythonProcess = spawn('python',[__dirname+"/../scripts/main.py", targetPath]);
       pythonProcess.stdout.on('data', (data) => {
         console.log("Spawning python process (3/4)")
         // Do something with the data returned from python script

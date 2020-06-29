@@ -9,7 +9,6 @@ const client = new Client({
 client.connect();
 module.exports = client; 
 
-
   // const pool = new Pool({
   //   user: 'postgres',
   //   host: 'localhost',

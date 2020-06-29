@@ -48,23 +48,29 @@ def textTransform(filePath):
 # raw_text = textTransform("../sample/sertifikat/sertifikat1.jpeg")
 # raw_text = textTransform(sys.argv[1])
 # raw_text = textTransform(sys.argv[1])
-raw_text = textTransform("../../sample/lembar pengesahan/lembarpengesahan1.jpeg")
-# raw_text = textTransform("../sample/tugas/tugas_individu1.jpeg")
+# raw_text = textTransform("../../sample/lembar pengesahan/lembarpengesahan1.jpeg")
 # raw_text = textTransform("../sample/other/test3.pdf")
-# raw_text = textTransform("../sample/pengujian/keputusan1.jpg")
-# raw_text = textTransform("../sample/pengujian/lampiran-jurnal.pdf")
-# raw_text = textTransform("../sample/pengujian/lembarpengesahan1.jpeg")
-# raw_text = textTransform("../sample/pengujian/sertifikat1.jpeg")
-# raw_text = textTransform("../sample/sertifikat/sertifikat2.pdf")
-# raw_text = textTransform("../sample/sertifikat/tugas_individu2.pdf")
-# raw_text = textTransform("../sample/pengujian/tugas_kolektif1.jpeg")
+# raw_text = textTransform("../../sample/pengujian/keputusan1.jpg")
+# raw_text = textTransform("../../sample/pengujian/lampiran-jurnal.jpeg")
+# raw_text = textTransform("../../sample/pengujian/lampiran-jurnal.pdf")
+# raw_text = textTransform("../../sample/pengujian/lembarpengesahan1.jpeg")
+# raw_text = textTransform("../../sample/pengujian/sertifikat1.jpeg")
+# raw_text = textTransform("../../sample/pengujian/sertifikat2.jpg")
+# raw_text = textTransform("../../sample/pengujian/surat-pengangkatan1.jpeg")
+# raw_text = textTransform("../../sample/pengujian/surat-pengangkatan1.pdf")
+# raw_text = textTransform("../../sample/pengujian/tugas_kolektif1.jpeg")
+raw_text = textTransform("../../sample/tugas/tugas_individu1.jpeg")
+print(raw_text.replace("\n", "\\n"))
 # tokenize text into sentences
 sentences = nltk.sent_tokenize(raw_text)
+print(sentences)
 # split sentence into individual word
 full_words = []
 for i, sentence in enumerate(sentences):
+    # remove symbols and weird char
+    resultClearChar = re.sub('[@?!#$%^&*(),.|]', '', sentence)
     # change all text to lowercase
-    resultLowerCase = sentence.lower()
+    resultLowerCase = resultClearChar.lower()
     # replace enter (\n) with space
     resultNoEnter = re.sub('[\t\n]', ' ', resultLowerCase)
     # replace tabs and multiple spaces with single space
@@ -78,6 +84,7 @@ for i, sentence in enumerate(sentences):
     word = encodedText.split()
     full_words = full_words + word
     # print words
+print(full_words)
 # text ready to be compared with database
 dataDosen = get_data('dosen')
 dataJudul = get_data('judul')
@@ -131,10 +138,11 @@ for i, nama in enumerate(nama_dosen):
         part_length = len(dosennamefull)
         counter = 0
         for dosen_name in dosennamefull:
-            if(nama_dosen[i+counter] == dosennamefull[counter] and counter <= part_length and i+counter < len(nama_dosen)-1):
+            if(nama_dosen[i+counter] == dosennamefull[counter] and counter <= part_length and i+counter < len(nama_dosen)-1): # change to len(nama_dosen)-1 cz dosen name is bugged
                 dosen_text = dosen_text + " " + nama_dosen[i+counter]
                 counter = counter + 1
                 if(counter == part_length):
+                    print(dosen_text)
                     dosen_array.append({"text": dosennamefull, "counter": "1", "nidn": dosen['nidn'], "nip": dosen['nomor_dosen']})
                     dosen_text = ""
             else:
@@ -143,6 +151,7 @@ for i, nama in enumerate(nama_dosen):
 nama_dosen = dosen_array
 
 dosenAmount = len(nama_dosen)
+
 document_type = '' # tipe dokumen or document type to be outputted
 document_is_multiple = '' # tag for whether the tipe's bobot is affected by dosen amount
 for item in dataJudul:
@@ -179,16 +188,26 @@ for regex in dataRegexNomor:
 
 tanggal = []
 for regex in dataRegexIsi:
-    for word in full_words:
+    for i, word in enumerate(full_words):
         result = regex_checker(regex['regex_isi'], word)
+        checkAgain = re.findall('(januari|februari|maret|april|mei|juni|juli|agustus|september|oktober|november|desember|jan|feb|mar|apr|may|jun|jul|aug|sept|sep|okt|nov|des)', word)
         if result is not None:
-            print(result)
             tanggal.append(result)
+        if len(checkAgain) > 0:
+            left = ''
+            right = ''
+            if re.match('([0-9]|[0-3][0-9])',full_words[i-1]):
+                left = full_words[i-1]
+            if re.match('([0-9]|[0-3][0-9])',full_words[i+1]):
+                right = full_words[i+1]
+            tanggalTemp = left + ' ' + word + ' ' + right
+            result2 = regex_checker(regex['regex_isi'], tanggalTemp)
+            if result2 is not None:
+                tanggal.append(result2)
 
 filepath = "../sample/tugas/tugas_individu1.jpeg"
 # filepath = sys.argv[1]
 file_name = os.path.basename(filepath)
-print(nama_dosen_final)
 print("filename: "+file_name)
 print("doc_type: "+document_type)
 for item in nama_dosen_final:
@@ -197,10 +216,23 @@ for item in nama_dosen_final:
     print("\tbobot: "+str(item['bobot']))
     print("\tnip: "+item['nip'])
     print("\tnidn: "+item['nidn'])
-print("nomor:" + ' '.join(nomor_surat))
-print("tanggal: " + ' '.join(tanggal))
+print("nomor:" + re.sub(' ', '',' '.join(nomor_surat)))
+print("tanggal:" + ' '.join(tanggal))
 
-
+text_file = []
+text_file.append("doc_type: "+document_type)
+text_file.append("\nfilename: "+file_name)
+text_file.append("\ndoc_type: "+document_type)
+for item in nama_dosen_final:
+    # if(len(item)>0):
+    text_file.append("\n\tnama_dosen: "+item['nama_dosen'])
+    text_file.append("\n\tbobot: "+str(item['bobot']))
+    text_file.append("\n\tnip: "+item['nip'])
+    text_file.append("\n\tnidn: "+item['nidn'])
+text_file.append("\nnomor: " + re.sub(' ', '',' '.join(nomor_surat)))
+text_file.append("\ntanggal:" + ' '.join(tanggal))
+with open("Output.txt", "w") as output:
+    output.writelines(text_file)
 
 # print(''.join(nomor_surat))
 # sys.stdout.flush()

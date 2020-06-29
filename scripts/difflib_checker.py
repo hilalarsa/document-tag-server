@@ -60,7 +60,6 @@ def text_matcher_dosen(sourceWord, testedWord):
         seq = SequenceMatcher(a=single_name,b=testedWord)
         
         # while n < partLength: # stop appending when reached end of each name
-
         if(seq.ratio() > 0.8): # if ratio is more than 80%, place data from api to output text
             return single_name
     
