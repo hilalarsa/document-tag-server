@@ -23,6 +23,7 @@ router.post('/', upload.array('file', 10), (req, res) => {
     const tempPath = file.path;
     const targetPath = path.join(__dirname, "./uploads/"+file.originalname);
     const filePath = path.join(__dirname, "./output/"+file.originalname+".txt");
+    const downloadPath = path.join(__dirname, "./output_py/"+file.originalname+".txt");
     
     console.log(__dirname+"/../scripts/main.py")
     // move uploaded file to /uploads
@@ -53,7 +54,7 @@ router.get('/download/:id', function(req, res){
   // const file = __dirname+"/output/tugas_kolektif1.jpeg.txt";
   console.log(file)
   res.download(file, function (error) {
-    res.redirect('/')
+    if(error) console.log(error)
   });
 });
 

@@ -1,3 +1,4 @@
+doc_type: surat tugas kolektif
 filename: tugas_kolektif1.jpeg
 doc_type: surat tugas kolektif
 	nama_dosen: putra prima arhandi
@@ -12,5 +13,5 @@ doc_type: surat tugas kolektif
 	bobot: 10
 	nip: -
 	nidn: -
-nomor:10116/pl2/kp/2019
+nomor: 10116/pl2/kp/2019
 tanggal:31 oktober 2019 1 apr 31 okt

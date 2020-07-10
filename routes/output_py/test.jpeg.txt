@@ -1,0 +1,5 @@
+doc_type: unknown
+filename: test.jpeg
+doc_type: unknown
+nomor: 
+tanggal:

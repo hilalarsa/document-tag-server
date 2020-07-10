@@ -1,0 +1,9 @@
+doc_type: surat tugas individu
+filename: tugas_individu2.pdf
+doc_type: surat tugas individu
+	nama_dosen: erfan rohadi
+	bobot: 10
+	nip: 197201232008011006
+	nidn: 0023017206
+nomor: 1212/pl2/kp/2017
+tanggal:

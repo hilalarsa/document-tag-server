@@ -60,7 +60,9 @@ def textTransform(filePath):
 # raw_text = textTransform("../../sample/pengujian/surat-pengangkatan1.pdf")
 # raw_text = textTransform("../../sample/pengujian/testpdf.pdf")
 # raw_text = textTransform("../../sample/bank/bca1.jpeg")
-raw_text = textTransform("../../sample/bank/bca2.png")
+raw_text = textTransform("../../sample/bank/bca2.jpeg")
+# raw_text = textTransform("../../sample/bank/bca2.jpg")
+# raw_text = textTransform("../../sample/bank/bca4.png")
 # raw_text = textTransform("../../sample/bank/bca7.jpg")
 # raw_text = textTransform("../../sample/tugas/tugas_individu1.jpeg")
 # filepath = sys.argv[1]
@@ -216,6 +218,11 @@ if(document_type == 'bukti transfer digital'):
     for i, word in enumerate(full_words):
         if(re.match('\d{2}\/\d{2}',word)):
             tanggal = word + ' ' + full_words[i+1]
+        if(word == 'rp'):
+            nominal = fullwords[i+1]
+        if(word == 'ke'):
+            rekening = fullwords[i+1]
+        # if(word == '')
         # if(re.match('(\d{2}\/\d{2})',word)):
 
 
