@@ -17,13 +17,9 @@
     <!-- <script src="../library/dropzone-5.7.0/dist/dropzone.js"></script> -->
   </head>
   <body>
-    <h1>Menu</h1>
-    <a href="/judul/view" class="waves-effect waves-light btn">Judul</a>
-    <a href="/dosen/view" class="waves-effect waves-light btn">Nama Dosen</a>
-    <a href="/nomor/view" class="waves-effect waves-light btn">Regex Nomor</a>
-    <a href="/isi/view" class="waves-effect waves-light btn">Regex Isi</a>
+    <%- include('components/navbar.ejs') -%>
 
-    <h1>Upload</h1>
+    <h4>Upload</h4>
     <p>Upload single file (*/image OR *.pdf)</p>
     <form action="/" method="post" enctype="multipart/form-data" multiple="multiple" name="file">
       <input type="file" name="file">
@@ -31,6 +27,7 @@
         UPLOAD
       </button>
     </form>
+    
     <!-- <form
       action="/"
       method="post"
@@ -45,7 +42,23 @@
     <button id="submit-all" type="submit" class="waves-effect waves-light btn">
       RUN ENGINE
     </button> -->
-    <h1>Output</h1>
+    <h4>Form Input Dokumen</h4>
+    <div class="input-field col s6">
+      <input placeholder="Tipe dokumen" id="first_name" type="text" class="validate">
+      <label for="first_name">Tipe dokumen</label>
+    </div>
+    <div class="input-field col s6">
+      <input placeholder="Nama dosen" id="first_name" type="text" class="validate">
+      <label for="first_name">Nama Dosen</label>
+    </div>
+    <div class="input-field col s6">
+      <input placeholder="Nomor surat" id="first_name" type="text" class="validate">
+      <label for="first_name">Nomor Surat</label>
+    </div>
+    <div class="input-field col s6">
+      <input placeholder="Tanggal" id="first_name" type="text" class="validate">
+      <label for="first_name">Tanggal</label>
+    </div>
     <div><%= data %></div>
     <a href="/download/<%= encodeURIComponent(data); %>" class="waves-effect waves-light btn">Download</a>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
