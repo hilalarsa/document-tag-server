@@ -47,7 +47,7 @@ def textTransform(filePath):
 # raw_text = textTransform("../sample/tugas/tugas_kolektif3.jpeg")
 # raw_text = textTransform("../sample/sertifikat/sertifikat1.jpeg")
 # raw_text = textTransform(sys.argv[1])
-raw_text = textTransform(sys.argv[1])
+# raw_text = textTransform(sys.argv[1])
 # raw_text = textTransform("../../sample/lembar pengesahan/lembarpengesahan1.jpeg")
 # raw_text = textTransform("../sample/other/test3.pdf")
 # raw_text = textTransform("../../sample/pengujian/keputusan1.jpg")
@@ -58,8 +58,15 @@ raw_text = textTransform(sys.argv[1])
 # raw_text = textTransform("../../sample/pengujian/sertifikat2.jpg")
 # raw_text = textTransform("../../sample/pengujian/surat-pengangkatan1.jpeg")
 # raw_text = textTransform("../../sample/pengujian/surat-pengangkatan1.pdf")
-# raw_text = textTransform("../../sample/pengujian/tugas_kolektif1.jpeg")
+# raw_text = textTransform("../../sample/pengujian/testpdf.pdf")
+# raw_text = textTransform("../../sample/bank/bca1.jpeg")
+raw_text = textTransform("../../sample/bank/bca2.png")
+# raw_text = textTransform("../../sample/bank/bca7.jpg")
 # raw_text = textTransform("../../sample/tugas/tugas_individu1.jpeg")
+# filepath = sys.argv[1]
+# filepath = "../../sample/good_image/tugas_individu2.pdf"
+# raw_text = textTransform(filepath)
+# raw_text = textTransform(sys.argv[1])
 # print(raw_text.replace("\n", "\\n"))
 # tokenize text into sentences
 sentences = nltk.sent_tokenize(raw_text)
@@ -84,7 +91,7 @@ for i, sentence in enumerate(sentences):
     word = encodedText.split()
     full_words = full_words + word
     # print words
-# print(full_words)
+print(full_words)
 # text ready to be compared with database
 dataDosen = get_data('dosen')
 dataJudul = get_data('judul')
@@ -205,19 +212,16 @@ for regex in dataRegexIsi:
             if result2 is not None:
                 tanggal.append(result2)
 
-# filepath = "../sample/tugas/tugas_individu1.jpeg"
-filepath = sys.argv[1]
+if(document_type == 'bukti transfer digital'):
+    for i, word in enumerate(full_words):
+        if(re.match('\d{2}\/\d{2}',word)):
+            tanggal = word + ' ' + full_words[i+1]
+        # if(re.match('(\d{2}\/\d{2})',word)):
+
+
+filepath = "test.jpeg"
+# filepath = sys.argv[1]
 file_name = os.path.basename(filepath)
-print("filename: "+file_name)
-print("doc_type: "+document_type)
-for item in nama_dosen_final:
-    # if(len(item)>0):
-    print("\tnama_dosen: "+item['nama_dosen'])
-    print("\tbobot: "+str(item['bobot']))
-    print("\tnip: "+item['nip'])
-    print("\tnidn: "+item['nidn'])
-print("nomor:" + re.sub(' ', '',' '.join(nomor_surat)))
-print("tanggal:" + ' '.join(tanggal))
 
 text_file = []
 text_file.append("doc_type: "+document_type)
@@ -231,8 +235,23 @@ for item in nama_dosen_final:
     text_file.append("\n\tnidn: "+item['nidn'])
 text_file.append("\nnomor: " + re.sub(' ', '',' '.join(nomor_surat)))
 text_file.append("\ntanggal:" + ' '.join(tanggal))
-with open("Output.txt", "w") as output:
-    output.writelines(text_file)
+
+f = open("../routes/output_py/"+file_name+".txt", "w")
+f.writelines(text_file)
+f.close()
+
+print("filename: "+file_name)
+print("doc_type: "+document_type)
+for item in nama_dosen_final:
+    # if(len(item)>0):
+    print("\tnama_dosen: "+item['nama_dosen'])
+    print("\tbobot: "+str(item['bobot']))
+    print("\tnip: "+item['nip'])
+    print("\tnidn: "+item['nidn'])
+print("nomor:" + re.sub(' ', '',' '.join(nomor_surat)))
+print("tanggal:" + ' '.join(tanggal))
+
+
 
 # print(''.join(nomor_surat))
 # sys.stdout.flush()

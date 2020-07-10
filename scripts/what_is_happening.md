@@ -12,9 +12,10 @@ Text checker is created to check every text inside the first array, with text on
 10. check each word for *nama_dosen*, loop each splitted nama dosen, until match. get nama, nidn, and nip.
 # rule based
 11. check if is_multiple is true, and dosen is more than 1:
-    a. IF document is_multiple is true, bobot is rated down 100-10
+    a. IF document is_multiple is true, bobot is rated down (nDosen-10 to 0)
     b. IF document is_multiple is false, bobot is the same for all dosen
-12.  
+12. Regex on nomor and tanggal
+13. Output
 
 
 
@@ -23,4 +24,6 @@ Text checker is created to check every text inside the first array, with text on
 CONSTRAINT
 1. trigger word should not be duplicate
 2. nama dosen should not be duplicate and shortened
-3. 
+3. output is highly based on image and scan quality
+
+Afternote :

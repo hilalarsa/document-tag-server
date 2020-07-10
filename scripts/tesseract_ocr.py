@@ -129,7 +129,7 @@ def check_rotation(filepath):
 def image_to_text(filePath):
     image = cv2.imread(filePath)
     # image = deskew(image)
-    image = check_rotation(filePath) # if image sideways, it will be rotated based on tesseract confidence level
+    # image = check_rotation(filePath) # if image sideways, it will be rotated based on tesseract confidence level
 
     image = get_grayscale(image) # jadi abu2
     image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1] # jadi hitam putih
