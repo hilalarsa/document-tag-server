@@ -27,3 +27,25 @@ CONSTRAINT
 3. output is highly based on image and scan quality
 
 Afternote :
+
+
+    <% if(data.nama_dosen.length > 0){%>
+      <% data.nama_dosen.forEach(function(item) { %>
+        <div class="input-field col s6">
+          <input placeholder="Nama dosen" type="text" class="validate" value="<%= item.nama_dosen %>">
+          <label for="first_name">Nama Dosen</label>
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="Bobot" type="text" class="validate" value="<%= item.bobot %>">
+          <label for="first_name">Bobot</label>
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="NIP" type="text" class="validate" value="<%= item.nip %>">
+          <label for="first_name">NIP</label>
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="NIDN" type="text" class="validate" value="<%= item.nidn %>">
+          <label for="first_name">NIDN</label>
+        </div>
+      <% }); %>
+    <% } %>

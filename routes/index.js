@@ -12,7 +12,7 @@ const spawn = require("child_process").spawn;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index', {data: []})
+    res.render('index', {data: [], isEmpty: true})
 });
 
 router.post('/', upload.array('file', 10), (req, res) => {
@@ -33,13 +33,15 @@ router.post('/', upload.array('file', 10), (req, res) => {
       const pythonProcess = spawn('python',[__dirname+"/../scripts/main.py", targetPath]);
       pythonProcess.stdout.on('data', (data) => {
         console.log("Spawning python process (3/4)")
+        console.log(data.toString())
+        res.render('index',{data: JSON.parse(data.toString()), isEmpty: false})
         // Do something with the data returned from python script
-        fs.writeFile(filePath, data.toString(), function (err) {
-          if (err) console.log(err)
-          console.log('File output is created successfully.(4/4)');
-          // res.end()
-          res.render('index',{data: filePath})
-        });
+        // fs.writeFile(filePath, data.toString(), function (err) {
+        //   if (err) console.log(err)
+        //   console.log('File output is created successfully.(4/4)');
+        //   // res.end()
+        //   res.render('index',{data: filePath})
+        // });
       });
       // res.render('index', {data: filePath});
     })

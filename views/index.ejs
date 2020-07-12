@@ -17,8 +17,18 @@
     <!-- <script src="../library/dropzone-5.7.0/dist/dropzone.js"></script> -->
   </head>
   <body>
-    <%- include('components/navbar.ejs') -%>
-
+      <nav>
+          <div class="nav-wrapper">
+            <a href="#!" style="margin-left: 24px" class="brand-logo">Doctag Server</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="/">Home</a></li>
+              <li><a href="/judul/view">Judul</a></li>
+              <li><a href="/dosen/view">Nama Dosen</a></li>
+              <li><a href="/nomor/view">Regex Nomor</a></li>
+              <li><a href="/isi/view">Regex Isi</a></li>
+            </ul>
+          </div>
+        </nav>
     <h4>Upload</h4>
     <p>Upload single file (*/image OR *.pdf)</p>
     <form action="/" method="post" enctype="multipart/form-data" multiple="multiple" name="file">
@@ -27,7 +37,6 @@
         UPLOAD
       </button>
     </form>
-    
     <!-- <form
       action="/"
       method="post"
@@ -44,23 +53,96 @@
     </button> -->
     <h4>Form Input Dokumen</h4>
     <div class="input-field col s6">
-      <input placeholder="Tipe dokumen" id="first_name" type="text" class="validate">
+      <input placeholder="Tipe dokumen" type="text" class="validate" value="<%= data.doc_type %>">
       <label for="first_name">Tipe dokumen</label>
     </div>
-    <div class="input-field col s6">
-      <input placeholder="Nama dosen" id="first_name" type="text" class="validate">
-      <label for="first_name">Nama Dosen</label>
-    </div>
-    <div class="input-field col s6">
-      <input placeholder="Nomor surat" id="first_name" type="text" class="validate">
-      <label for="first_name">Nomor Surat</label>
-    </div>
-    <div class="input-field col s6">
-      <input placeholder="Tanggal" id="first_name" type="text" class="validate">
-      <label for="first_name">Tanggal</label>
-    </div>
-    <div><%= data %></div>
-    <a href="/download/<%= encodeURIComponent(data); %>" class="waves-effect waves-light btn">Download</a>
+    
+    <% if(!isEmpty){%>
+      <% if(data.nama_dosen){%>
+        <% data.nama_dosen.forEach(function(item, index) { %>
+          <div class="dosen-name input-field col s6">
+            <input placeholder="Nama dosen" type="text" class="validate" value="<%= item.nama_dosen %>">
+            <label for="first_name">Nama Dosen <%= index+1 %></label>
+          </div>
+          <div class="dosen-name input-field col s6">
+            <input placeholder="Bobot" type="text" class="validate" value="<%= item.bobot %>">
+            <label for="first_name">Bobot</label>
+          </div>
+          <div class="dosen-name input-field col s6">
+            <input placeholder="NIP" type="text" class="validate" value="<%= item.nip %>">
+            <label for="first_name">NIP</label>
+          </div>
+          <div class="dosen-name input-field col s6">
+            <input placeholder="NIDN" type="text" class="validate" value="<%= item.nidn %>">
+            <label for="first_name">NIDN</label>
+          </div>
+        <% }); %>
+      <% } %>
+      
+      <% if(data.nomor != ""){%>
+        <div class="input-field col s6">
+          <input placeholder="Nomor surat" type="text" class="validate" value="<%= data.nomor %>">
+          <label for="first_name">Nomor Surat</label>
+        </div>
+      <% } %>
+      <% if(data.tanggal != ""){%>
+      <div class="input-field col s6">
+        <input placeholder="Tanggal" type="text" class="validate" value="<%= data.tanggal %>">
+        <label for="first_name">Tanggal</label>
+      </div>
+      <% } %>
+      <!-- Rekening Struk -->
+      <% if(data.nominal != ""){%>
+      <div class="input-field col s6">
+        <input placeholder="Nominal" type="text" class="validate" value="<%= data.nominal %>">
+        <label for="first_name">Nominal</label>
+      </div>
+      <% } %>
+      <% if(data.rekening != ""){%>
+      <div class="input-field col s6">
+        <input placeholder="Rekening Tujuan" type="text" class="validate" value="<%= data.rekening %>">
+        <label for="first_name">Rekening Tujuan</label>
+      </div>
+      <% } %>
+      <% if(data.pemilik_rek != ""){%>
+      <div class="input-field col s6">
+        <input placeholder="Pemilik Rekening Tujuan" type="text" class="validate" value="<%= data.pemilik_rek %>">
+        <label for="first_name">Pemilik Rekening Tujuan</label>
+      </div>
+      <% } %>
+      <!-- Surat tugas mengajar -->
+      <% if(data.pangkat != ""){%>
+      <div class="input-field col s6">
+        <input placeholder="Pangkat" type="text" class="validate" value="<%= data.pangkat %>">
+        <label for="first_name">Pangkat</label>
+      </div>
+      <% } %>
+      <% if(data.jabatan != ""){%>
+      <div class="input-field col s6">
+        <input placeholder="Jabatan" type="text" class="validate" value="<%= data.jabatan %>">
+        <label for="first_name">Jabatan</label>
+      </div>
+      <% } %>
+      <% if(data.jurusan != ""){%>
+      <div class="input-field col s6">
+        <input placeholder="Jurusan" type="text" class="validate" value="<%= data.jurusan %>">
+        <label for="first_name">Jurusan</label>
+      </div>
+      <% } %>
+      <% if(data.semester != ""){%>
+      <div class="input-field col s6">
+        <input placeholder="Semester" type="text" class="validate" value="<%= data.semester %>">
+        <label for="first_name">Semester</label>
+      </div>
+      <% } %>
+      <% if(data.tahun_akademik != ""){%>
+      <div class="input-field col s6">
+        <input placeholder="Tahun Akademik" type="text" class="validate" value="<%= data.tahun_akademik %>">
+        <label for="first_name">Tahun Akademik</label>
+      </div>
+      <% } %>
+    <% } %>
+    <button class="waves-effect waves-light btn">Submit</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script>
       {
@@ -88,5 +170,13 @@
         
       }
     </script>
+    <style>
+    .input-field{
+      width: 50%;
+    }
+    .dosen-name{
+      margin-left: 24px;
+    }
+    </style>
   </body>
 </html>

@@ -1,5 +1,5 @@
-doc_type: unknown
+doc_type: surat tugas individu
 filename: test.jpeg
-doc_type: unknown
-nomor: 
+doc_type: surat tugas individu
+nomor: 19496/pl2/td/2019
 tanggal:

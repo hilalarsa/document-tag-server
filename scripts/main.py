@@ -59,11 +59,16 @@ def textTransform(filePath):
 # raw_text = textTransform("../../sample/pengujian/surat-pengangkatan1.jpeg")
 # raw_text = textTransform("../../sample/pengujian/surat-pengangkatan1.pdf")
 # raw_text = textTransform("../../sample/pengujian/testpdf.pdf")
+raw_text = textTransform(sys.argv[1])
 # raw_text = textTransform("../../sample/bank/bca1.jpeg")
-raw_text = textTransform("../../sample/bank/bca2.jpeg")
+# raw_text = textTransform("../../sample/bank/bca2.jpeg")
 # raw_text = textTransform("../../sample/bank/bca2.jpg")
 # raw_text = textTransform("../../sample/bank/bca4.png")
 # raw_text = textTransform("../../sample/bank/bca7.jpg")
+# raw_text = textTransform("../../sample/ajar/ajar1.jpeg")
+# raw_text = textTransform("../../sample/ajar/ajar2.pdf")
+# raw_text = textTransform("../../sample/ajar/ajar3.jpg")
+# raw_text = textTransform("../../sample/ajar/ajar4.jpg")
 # raw_text = textTransform("../../sample/tugas/tugas_individu1.jpeg")
 # filepath = sys.argv[1]
 # filepath = "../../sample/good_image/tugas_individu2.pdf"
@@ -93,7 +98,7 @@ for i, sentence in enumerate(sentences):
     word = encodedText.split()
     full_words = full_words + word
     # print words
-print(full_words)
+# print(full_words)
 # text ready to be compared with database
 dataDosen = get_data('dosen')
 dataJudul = get_data('judul')
@@ -214,51 +219,161 @@ for regex in dataRegexIsi:
             if result2 is not None:
                 tanggal.append(result2)
 
+nominal = ""
+rekening = ""
+pemilik_rek = ""
+
+pangkat = ""
+jabatan = ""
+jurusan = ""
+semester = ""
+tahun_akademik = ""
+
 if(document_type == 'bukti transfer digital'):
     for i, word in enumerate(full_words):
-        if(re.match('\d{2}\/\d{2}',word)):
+        if(re.match('(\d{2}\/\d{2})',word)):
             tanggal = word + ' ' + full_words[i+1]
         if(word == 'rp'):
-            nominal = fullwords[i+1]
+            nominal = full_words[i+1]
         if(word == 'ke'):
-            rekening = fullwords[i+1]
+            pemilik_rek = full_words[i+1]
+        if(re.match('(\d){10,}',word)):
+            rekening = word
         # if(word == '')
         # if(re.match('(\d{2}\/\d{2})',word)):
 
+if(document_type == 'surat tugas individu'):
+    document_type = 'surat tugas mengajar'
+    for i, word in enumerate(full_words):
+        if(word == 'ruang' and re.match(':', full_words[i+1])):
+            pangkat = full_words[i+2] + ' ' +  full_words[i+3] + ' ' +  full_words[i+4] + ' ' +  full_words[i+5]
+        if(word == 'fungsional' and re.match(':', full_words[i+1])):
+            jabatan = full_words[i+2] + ' ' +  full_words[i+3]
+        if(word == 'studi' and re.match(':', full_words[i+1])):
+            jurusan = full_words[i+2] + ' ' + full_words[i+3]
+        if(word == 'semester'):
+            semester = full_words[i+1]
+        if(word == 'tahun' and full_words[i+1] == "akademik"):
+            tahun_akademik = full_words[i+2]
+
+temp_nomor = re.sub(' ', '',' '.join(nomor_surat))
+temp_tanggal = ' '.join(tanggal)
 
 filepath = "test.jpeg"
 # filepath = sys.argv[1]
 file_name = os.path.basename(filepath)
 
 text_file = []
-text_file.append("doc_type: "+document_type)
-text_file.append("\nfilename: "+file_name)
-text_file.append("\ndoc_type: "+document_type)
-for item in nama_dosen_final:
-    # if(len(item)>0):
-    text_file.append("\n\tnama_dosen: "+item['nama_dosen'])
-    text_file.append("\n\tbobot: "+str(item['bobot']))
-    text_file.append("\n\tnip: "+item['nip'])
-    text_file.append("\n\tnidn: "+item['nidn'])
-text_file.append("\nnomor: " + re.sub(' ', '',' '.join(nomor_surat)))
-text_file.append("\ntanggal:" + ' '.join(tanggal))
+# if(document_type != ""):
+# if(file_name != ""):
+#     text_file.append({"file_name": file_name})
+# if(nama_dosen_final != ""):
+#     text_file.append({"nama_dosen_final": nama_dosen_final})
+# if(temp_nomor != ""):
+#     text_file.append({"nomor": temp_nomor})
+# if(' '.join(tanggal) != ""):
+#     text_file.append({"tanggal": temp_tanggal})
+# if(nominal != ""):
+#     text_file.append({"nominal": nominal})
+# if(rekening != ""):
+#     text_file.append({"rekening": rekening})
+# if(pemilik_rek != ""):
+#     text_file.append({"pemilik_rek": pemilik_rek})
+# if(pangkat != ""):
+#     text_file.append({"pangkat": pangkat})
+# if(jabatan != ""):
+#     text_file.append({"jabatan": jabatan})
+# if(jurusan != ""):
+#     text_file.append({"jurusan": jurusan})
+# if(semester != ""):
+#     text_file.append({"semester": semester})
+# if(tahun_akademik != ""):
+#     text_file.append({"tahun_akademik": tahun_akademik})
+nama_dosen_haha = ""
+for i, item in enumerate(nama_dosen_final):
+    nama_dosen_haha += '{"nama_dosen":"'+item['nama_dosen']+'",'
+    nama_dosen_haha += '"bobot":"'+str(item['bobot'])+'",'
+    nama_dosen_haha += '"nip":"'+item['nip']+'",'
+    nama_dosen_haha += '"nidn":"'+item['nidn']+'"}'
+    if(len(nama_dosen_final) > 1 and i+1 != len(nama_dosen_final)):
+        nama_dosen_haha += ','
 
-f = open("../routes/output_py/"+file_name+".txt", "w")
-f.writelines(text_file)
-f.close()
+print('{"doc_type":"'+document_type+'",'+
+        '"file_name":"'+file_name+'",'+
+        '"nama_dosen":['+nama_dosen_haha+'],'+
+        '"nomor":"'+temp_nomor+'",'+
+        '"tanggal":"'+temp_tanggal+'",'+
+        '"nominal":"'+nominal+'",'+
+        '"rekening":"'+rekening+'",'+
+        '"pemilik_rek":"'+pemilik_rek+'",'+
+        '"pangkat":"'+pangkat+'",'+
+        '"jabatan":"'+jabatan+'",'+
+        '"jurusan":"'+jurusan+'",'+
+        '"semester":"'+semester+'",'+
+        '"tahun_akademik":"'+tahun_akademik+'"}')
 
-print("filename: "+file_name)
-print("doc_type: "+document_type)
-for item in nama_dosen_final:
-    # if(len(item)>0):
-    print("\tnama_dosen: "+item['nama_dosen'])
-    print("\tbobot: "+str(item['bobot']))
-    print("\tnip: "+item['nip'])
-    print("\tnidn: "+item['nidn'])
-print("nomor:" + re.sub(' ', '',' '.join(nomor_surat)))
-print("tanggal:" + ' '.join(tanggal))
+
+# Create input for text file
+# text_file.append("\nfilename: "+file_name)
+# text_file.append("\ndoc_type: "+document_type)
+# for item in nama_dosen_final:
+#     # if(len(item)>0):
+#     text_file.append("\n\tnama_dosen: "+item['nama_dosen'])
+#     text_file.append("\n\tbobot: "+str(item['bobot']))
+#     text_file.append("\n\tnip: "+item['nip'])
+#     text_file.append("\n\tnidn: "+item['nidn'])
+# text_file.append("\nnomor: " + re.sub(' ', '',' '.join(nomor_surat)))
+# text_file.append("\ntanggal:" + ' '.join(tanggal))
+# if(nominal != ""):
+#     text_file.append("nominal:" +nominal)
+# if(rekening != ""):
+#     text_file.append("rekening:" +rekening)
+# if(pemilik_rek != ""):
+#     text_file.append("pemilik_rek:" +pemilik_rek)
+# if(pangkat != ""):
+#     text_file.append("pangkat: " +pangkat)
+# if(jabatan != ""):
+#     text_file.append("jabatan: " +jabatan)
+# if(jurusan != ""):
+#     text_file.append("jurusan: " +jurusan)
+# if(semester != ""):
+#     text_file.append("semester: " +semester)
+# if(tahun_akademik != ""):
+#     text_file.append("tahun_akademik: " +tahun_akademik)
 
 
+# Create output to python print
+# print("filename: "+file_name)
+# print("doc_type: "+document_type)
+# for item in nama_dosen_final:
+#     # if(len(item)>0):
+#     print("\tnama_dosen: "+item['nama_dosen'])
+#     print("\tbobot: "+str(item['bobot']))
+#     print("\tnip: "+item['nip'])
+#     print("\tnidn: "+item['nidn'])
+# print("nomor:" + re.sub(' ', '',' '.join(nomor_surat)))
+# print("tanggal:" + ' '.join(tanggal))
+# if(nominal != ""):
+#     print("nominal:" +nominal)
+# if(rekening != ""):
+#     print("rekening:" +rekening)
+# if(pemilik_rek != ""):
+#     print("pemilik_rek:" +pemilik_rek)
+# if(pangkat != ""):
+#     print("pangkat: " +pangkat)
+# if(jabatan != ""):
+#     print("jabatan: " +jabatan)
+# if(jurusan != ""):
+#     print("jurusan: " +jurusan)
+# if(semester != ""):
+#     print("semester: " +semester)
+# if(tahun_akademik != ""):
+#     print("tahun_akademik: " +tahun_akademik)
+
+
+# f = open("../routes/output_py/"+file_name+".txt", "w")
+# f.writelines(text_file)
+# f.close()
 
 # print(''.join(nomor_surat))
 # sys.stdout.flush()
