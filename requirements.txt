@@ -73,7 +73,7 @@ sphinx-rtd-theme==0.4.3
 sphinxcontrib-websupport==1.1.2
 texttable==0.9.1
 typing==3.7.4.1
-urllib3==1.25.9
+urllib3==1.26.5
 virtualenv==20.0.9
 Wand==0.6.1
 websocket-client==0.44.0
