@@ -46,7 +46,7 @@ pathlib2==2.3.5
 pbr==3.1.1
 pdf2image==1.13.1
 pdfminer.six==20191110
-Pillow==6.2.2
+Pillow==9.0.0
 pipreqs==0.4.10
 pycrypto==2.6.1
 pycryptodome==3.9.4
